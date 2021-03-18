@@ -3,9 +3,10 @@
 // ----- [///// DEPENDENCIES /////] -----
 const express = require('express');
 const router = new express.Router();
-const User = require('..models/user');
+const jsonschema = require("jsonschema");
+const User = require('../models/user');
 
-const { createToken } = require('..helpers/tokens');
+const { createToken } = require('../helpers/tokens');
 const { BadRequestError } = require('../expressError');
 
 const userAuthSchema = require('../schemas/userAuth.json');
@@ -47,3 +48,7 @@ router.post('/register', async function (req, res, next) {
         return next(err);
     }
 })
+
+
+// ----- [///// EXPORTS /////] -----
+module.exports = router;

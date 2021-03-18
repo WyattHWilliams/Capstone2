@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
+import DiscipleApi from '../api_helpers/disciple_api';
 import LoggedInContext from '../LoggedInContext';
 import useFormFields from './hooks/useFormFields';
 
@@ -15,11 +16,9 @@ const LoginForm = () => {
         e.preventDefault();
         try {
             // make api call;
-            let token = 'authorized';
+            let token = await DiscipleApi.login(formData);
             if (token != 'unauthorized') {
-                console.log(formData.username)
                 toggleUserLogin(formData.username, token);
-                console.log(currentUser.isLoggedIn);
                 history.push('/home');
             } else {
                 alert('incorrect username or password');

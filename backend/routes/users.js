@@ -3,10 +3,11 @@
 // ----- [///// DEPENDENCIES /////] -----
 const express = require('express');
 const router = new express.Router();
-const User = require('..models/user');
+const jsonschema = require("jsonschema");
+const User = require('../models/user');
 
 const { ensureCorrectUserOrAdmin, ensureAdmin } = require("../middleware/auth");
-const { createToken } = require('..helpers/tokens');
+const { createToken } = require('../helpers/tokens');
 const { BadRequestError } = require('../expressError');
 
 const userNewSchema = require("../schemas/userNew.json");
