@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import DiscipleApi from '../api_helpers/disciple_api';
-import LoggedInContext from '../LoggedInContext';
+import { setCurrentUserData, setCurrentUserLoggedIn } from './actions/userActionCreators';
 import useFormFields from './hooks/useFormFields';
 
 const LoginForm = () => {
     const history = useHistory();
-    const { currentUser, toggleUserLogin } = useContext(LoggedInContext);
+    const dispatch = useDispatch();
     const [formData, handleChange, resetForm] = useFormFields({
         username: '',
         password: ''
@@ -15,10 +16,10 @@ const LoginForm = () => {
     async function handleSubmit(e) {
         e.preventDefault();
         try {
-            // make api call;
             let token = await DiscipleApi.login(formData);
             if (token != 'unauthorized') {
-                toggleUserLogin(formData.username, token);
+                dispatch(setCurrentUserLoggedIn(formData.username, token));
+                dispatch(setCurrentUserData(formData.username));
                 history.push('/home');
             } else {
                 alert('incorrect username or password');

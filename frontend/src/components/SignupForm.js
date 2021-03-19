@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import DiscipleApi from '../api_helpers/disciple_api';
-import LoggedInContext from '../LoggedInContext';
+import { setCurrentUserData, setCurrentUserLoggedIn } from './actions/userActionCreators';
 import useFormFields from './hooks/useFormFields';
 
 const SignupForm = () => {
-    const { currentUser, toggleUserLogin } = useContext(LoggedInContext);
     const history = useHistory();
+    const dispatch = useDispatch();
     const [formData, handleChange, resetForm] = useFormFields({
         username: '',
         password: '',
@@ -21,15 +22,18 @@ const SignupForm = () => {
         try {
             let token = await DiscipleApi.register(formData);
             if (token != 'failure') {
-                toggleUserLogin(formData.username, token);
+                dispatch(setCurrentUserLoggedIn(formData.username, token));
+                let res = await DiscipleApi.addSpoonacularHash(formData.username);
+                dispatch(setCurrentUserData(formData.username));
                 history.push('/');
             } else {
                 alert('registration error!');
                 console.log('registration error: registration failure');
                 resetForm();
             }
-        } catch {
-            console.log('registration error!');
+        } catch (err) {
+            alert('registration error!');
+            console.log('registration error:', err);
         }
     }
 

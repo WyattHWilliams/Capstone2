@@ -1,11 +1,12 @@
 // presents user with Login or Signup buttons.
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import LoggedInContext from '../LoggedInContext';
 
 const WelcomePage = () => {
     const history = useHistory();
-    const { currentUser } = useContext(LoggedInContext)
+    const currentUser = useSelector(store => store.currentUser);
+    const dispatch = useDispatch();
     console.log(currentUser)
 
     if (currentUser.isLoggedIn) history.push('/home');

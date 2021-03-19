@@ -34,7 +34,7 @@ router.post('/', ensureAdmin, async function (req, res, next) {
     }
 })
 
-/** GET /users/: => {users: [{username, firstName, lastName, email}, ...]}
+/** GET /users/: => {users: [{username, spoonacularHash, firstName, lastName, email}, ...]}
  *  ADMIN_ONLY
 */
 router.get('/', ensureAdmin, async function (req, res, next) {
@@ -46,7 +46,7 @@ router.get('/', ensureAdmin, async function (req, res, next) {
     }
 })
 
-/** GET /users/[username]: => {user: {username, firstName, lastName, isAdmin, email, calendarData: {...}}}
+/** GET /users/[username]: => {user: {username, spoonacluarHash, firstName, lastName, isAdmin, email, calendarData: {...}}}
  *  ADMIN or CORRECT_USER
 */
 router.get('/:username', ensureCorrectUserOrAdmin, async function (req, res, next) {

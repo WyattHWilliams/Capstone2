@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
-import LoggedInContext from './LoggedInContext';
+import { useSelector } from 'react-redux';
 
 const ProtectedRoute = (props) => {
-    const { currentUser } = useContext(LoggedInContext);
+    const currentUser = useSelector(store => store.currentUser);
 
     return (currentUser.isLoggedIn ? props.children : <Redirect to={{ pathname: '/' }} />)
 }

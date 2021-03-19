@@ -16,7 +16,7 @@ const {
 // ----- [///// CLASS /////] -----
 class User {
     /** AUTHENTICATE USER
-     *  {username, password} => {username, firstName, lastName, email, isAdmin}
+     *  {username, password} => {username, spoonacularHash, firstName, lastName, email, isAdmin}
      *  Errors:
      *      - UnauthorizedError if user not found or wrong password
      */
@@ -24,6 +24,7 @@ class User {
         const result = await db.query(
             `SELECT username,
                   password,
+                  spoonacular_hash AS "spoonacularHash",
                   first_name AS "firstName",
                   last_name AS "lastName",
                   email,
@@ -93,15 +94,16 @@ class User {
     }
 
     /** FIND ALL USERS
-     *  => [{username, firstName, lastName, email, isAdmin, calendarData:{...}}]
+     *  => [{username, spoonacularHash, firstName, lastName, email, isAdmin, calendarData:{...}}]
     */
     static async findAll() {
         const result = await db.query(
             `SELECT username,
-                  first_name AS "firstName",
-                  last_name AS "lastName",
-                  email,
-                  is_admin AS "isAdmin"
+                spoonacular_hash AS "spoonacularHash",
+                first_name AS "firstName",
+                last_name AS "lastName",
+                email,
+                is_admin AS "isAdmin"
            FROM users
            ORDER BY username`,
         );
@@ -110,17 +112,18 @@ class User {
     }
 
     /** GET SINGLE USER
-     *  {username} => {username, firstName, lastName, email, isAdmin, calendarData:{...}}
+     *  {username} => {username, spoonacularHash, firstName, lastName, email, isAdmin, calendarData:{...}}
      *  Errors:
      *      - NotFoundError if user not found
     */
     static async get(username) {
         const userRes = await db.query(
             `SELECT username,
-                  first_name AS "firstName",
-                  last_name AS "lastName",
-                  email,
-                  is_admin AS "isAdmin"
+                spoonacular_hash AS "spoonacularHash",
+                first_name AS "firstName",
+                last_name AS "lastName",
+                email,
+                is_admin AS "isAdmin"
            FROM users
            WHERE username = $1`,
             [username],
@@ -134,7 +137,7 @@ class User {
     }
 
     /** PARTIAL UPDATE
-     *  ?{firstName, lastName, password, email, isAdmin} => {username, firstName, lastName, email, isAdmin}
+     *  ?{spoonacularHash, firstName, lastName, password, email, isAdmin} => {username, spoonacularHash, firstName, lastName, email, isAdmin}
      *  Errors:
      *      - NotFoundError if user not found
      *  !! IMPORTANT NOTE: currently allows for passwrod or admin changes, possible security risk!!
@@ -147,6 +150,7 @@ class User {
         const { setCols, values } = sqlForPartialUpdate(
             data,
             {
+                spoonacularHash: "spoonacular_hash",
                 firstName: "first_name",
                 lastName: "last_name",
                 isAdmin: "is_admin",
@@ -157,6 +161,7 @@ class User {
                       SET ${setCols} 
                       WHERE username = ${usernameVarIdx} 
                       RETURNING username,
+                                spoonacular_hash AS "spoonacularHash",
                                 first_name AS "firstName",
                                 last_name AS "lastName",
                                 email,
