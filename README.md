@@ -25,6 +25,7 @@ Proposal: Todo Manager, Meal and Workout Plan Scheduler
 ---------- [========== ========== GOALS ========== ==========] ----------
 
 // ----- [///// Minimum Viable Product (MVP) /////] -----
+
     - generate weekly meal plans by diet.
     - generate weekly exercise plans.
     - show calendar with plans.
@@ -33,6 +34,7 @@ Proposal: Todo Manager, Meal and Workout Plan Scheduler
     - generate shopping cart based on meal plan.
 
 // ----- [///// FUTURE GOALS /////] -----
+
     - meal plan customisation:
         + prefered number of meals per day
         + meal restrictions(intolerances, things user doens't want to eat/doesn't like)
