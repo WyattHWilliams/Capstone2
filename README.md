@@ -8,10 +8,15 @@ Proposal: Todo Manager, Meal and Workout Plan Scheduler
         Generate weekly schedule assigning todos, meals, and workouts to each day. (also, pull data from google calendar and account for planned events?)
         Allow User to move things around before committing.
         Send committed schedule to user's google calendar via the google calendar api.
+
 3   Website, possibility for mobile development.
+
 4   Designed to help people with scheduling.
+
 5   Designed for people looking to organize their schedules and easily introduce healthy eating and exercising habits.
+
 6   (see above api listings)
+
 7   Notes:
         Projected issues:
             Getting proper authentication for using the google calendar api to post to user's google accounts.
