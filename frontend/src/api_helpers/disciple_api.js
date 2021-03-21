@@ -55,6 +55,17 @@ class DiscipleApi {
         return res.user;
     }
 
+    static async updateUser(username, userData) {
+        let res = await axios({
+            method: 'patch',
+            url: `${BASE_URL}/users/${username}`,
+            data: userData,
+            headers: { Authorization: `Bearer ${DiscipleApi.token}` }
+        });
+        console.log(res);
+        return res.data.user;
+    }
+
     static async addSpoonacularHash(username) {
         try {
             let { data } = await SpoonacularApi.getUserHash(username);

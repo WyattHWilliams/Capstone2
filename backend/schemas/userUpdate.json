@@ -26,6 +26,12 @@
       "minLength": 6,
       "maxLength": 60,
       "format": "email"
+    },
+    "diet": {
+      "type": "string"
+    },
+    "hasAnsweredMealQuestions": {
+      "type": "boolean"
     }
   },
   "additionalProperties": false,

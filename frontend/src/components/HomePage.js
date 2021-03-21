@@ -1,9 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 const HomePage = () => {
     const currentUser = useSelector(store => store.currentUser);
+    const history = useHistory()
+
     console.log(currentUser);
+    if (currentUser.hasAnsweredMealQuestions != true) history.push('/mealQuestions');
 
     return (
         <div className="HomePage-Component">

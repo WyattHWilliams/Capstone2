@@ -46,7 +46,7 @@ router.get('/', ensureAdmin, async function (req, res, next) {
     }
 })
 
-/** GET /users/[username]: => {user: {username, spoonacluarHash, firstName, lastName, isAdmin, email, calendarData: {...}}}
+/** GET /users/[username]: => {user: {username, spoonacluarHash, firstName, lastName, isAdmin, email, diet, h_a_m_q, calendarData: {...}}}
  *  ADMIN or CORRECT_USER
 */
 router.get('/:username', ensureCorrectUserOrAdmin, async function (req, res, next) {

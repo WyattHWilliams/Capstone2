@@ -20,3 +20,28 @@ Proposal: Todo Manager, Meal and Workout Plan Scheduler
             Data to/from google's api.
             login / account info
             Health related info regarding food restrictions or workout limitations.
+
+
+---------- [========== ========== GOALS ========== ==========] ----------
+
+// ----- [///// Minimum Viable Product (MVP) /////] -----
+    - generate weekly meal plans by diet.
+    - generate weekly exercise plans.
+    - show calendar with plans.
+    - edit calendar plans.
+    - commit calendar to google calendars.
+    - generate shopping cart based on meal plan.
+
+// ----- [///// FUTURE GOALS /////] -----
+    - meal plan customisation:
+        + prefered number of meals per day
+        + meal restrictions(intolerances, things user doens't want to eat/doesn't like)
+        + prefered eating times
+        + preferred shopping time
+        + weightloss or healthy eating goals
+
+    - exercise plan customization:
+        + weight loss or healthy living goals
+        + preferred workout times
+        + preferred number of workouts per day
+        + workout restrictions(injuries, health concerns)

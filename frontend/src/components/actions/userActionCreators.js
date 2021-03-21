@@ -39,10 +39,12 @@ export function setCurrentUserData(username) {
 
 // ----- [///// DISPATCH HANDLERS /////] -----
 export function gotUserData(user) {
-    let { spoonacularHash } = user;
+    let { spoonacularHash, diet, hasAnsweredMealQuestions } = user;
     return {
         type: 'SET_CURRENT_USER_DATA',
-        spoonacularHash: spoonacularHash
+        spoonacularHash: spoonacularHash,
+        diet: diet,
+        hasAnsweredMealQuestions: hasAnsweredMealQuestions
     }
 }
 

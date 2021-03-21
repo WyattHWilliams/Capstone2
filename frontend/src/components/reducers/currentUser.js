@@ -3,8 +3,8 @@ const INITIAL_STATE = {
     username: "",
     isLoggedIn: false,
     spoonacularHash: "",
-    mealDiet: "",
-    mealIntolerances: [],
+    diet: "",
+    hasAnsweredMealQuestions: false,
     error: false
 }
 
@@ -22,16 +22,16 @@ function currentUser(state = INITIAL_STATE, action) {
                 username: '',
                 isLoggedIn: false,
                 spoonacularHash: "",
-                mealDiet: "",
-                mealIntolerances: [],
+                diet: "",
+                hasAnsweredMealQuestions: false,
                 error: false
             };
         case 'SET_CURRENT_USER_DATA':
             return {
                 ...state,
-                spoonacularHash: action.spoonacularHash
-                // mealDiet: "",
-                // mealIntolerances: [],
+                spoonacularHash: action.spoonacularHash,
+                diet: action.diet,
+                hasAnsweredMealQuestions: action.hasAnsweredMealQuestions
             };
         case 'ERROR':
             return { ...state, error: true }

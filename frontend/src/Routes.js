@@ -6,6 +6,7 @@ import WelcomePage from './components/WelcomePage';
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm';
 import HomePage from './components/HomePage';
+import MealQuestionsForm from './components/MealQuestionsForm';
 
 const Routes = () => {
     return (
@@ -13,6 +14,7 @@ const Routes = () => {
             <Route path='/signup'><SignupForm /></Route>
             <Route path='/login'><LoginForm /></Route>
             <ProtectedRoute path='/home'><HomePage /></ProtectedRoute>
+            <ProtectedRoute path='/mealQuestions'><MealQuestionsForm /></ProtectedRoute>
             <Route path='/'><WelcomePage /></Route>
         </Switch>
     )

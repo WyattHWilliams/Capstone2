@@ -103,7 +103,9 @@ class User {
                 first_name AS "firstName",
                 last_name AS "lastName",
                 email,
-                is_admin AS "isAdmin"
+                is_admin AS "isAdmin",
+                diet,
+                has_answered_meal_questions AS "hasAnseredMealQuestions"
            FROM users
            ORDER BY username`,
         );
@@ -112,7 +114,7 @@ class User {
     }
 
     /** GET SINGLE USER
-     *  {username} => {username, spoonacularHash, firstName, lastName, email, isAdmin, calendarData:{...}}
+     *  {username} => {username, spoonacularHash, firstName, lastName, email, isAdmin, diet, h_a_m_q, calendarData:{...}}
      *  Errors:
      *      - NotFoundError if user not found
     */
@@ -123,7 +125,9 @@ class User {
                 first_name AS "firstName",
                 last_name AS "lastName",
                 email,
-                is_admin AS "isAdmin"
+                is_admin AS "isAdmin",
+                diet,
+                has_answered_meal_questions AS "hasAnsweredMealQuestions"
            FROM users
            WHERE username = $1`,
             [username],
@@ -154,6 +158,7 @@ class User {
                 firstName: "first_name",
                 lastName: "last_name",
                 isAdmin: "is_admin",
+                hasAnsweredMealQuestions: "has_answered_meal_questions"
             });
         const usernameVarIdx = "$" + (values.length + 1);
 
@@ -165,7 +170,9 @@ class User {
                                 first_name AS "firstName",
                                 last_name AS "lastName",
                                 email,
-                                is_admin AS "isAdmin"`;
+                                is_admin AS "isAdmin",
+                                diet,
+                                has_answered_meal_questions AS "hasAnseredMealQuestions"`;
         const result = await db.query(querySql, [...values, username]);
         const user = result.rows[0];
 
