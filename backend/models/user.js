@@ -120,16 +120,18 @@ class User {
     */
     static async get(username) {
         const userRes = await db.query(
-            `SELECT username,
-                spoonacular_hash AS "spoonacularHash",
-                first_name AS "firstName",
-                last_name AS "lastName",
-                email,
-                is_admin AS "isAdmin",
-                diet,
-                has_answered_meal_questions AS "hasAnsweredMealQuestions"
-           FROM users
-           WHERE username = $1`,
+            `SELECT users.username,
+                users.spoonacular_hash AS "spoonacularHash",
+                users.first_name AS "firstName",
+                users.last_name AS "lastName",
+                users.email,
+                users.is_admin AS "isAdmin",
+                users.diet,
+                users.has_answered_meal_questions AS "hasAnsweredMealQuestions",
+                meal_plans.monday, meal_plans.tuesday, meal_plans.wednesday, meal_plans.thursday, meal_plans.friday, meal_plans.saturday, meal_plans.sunday
+            FROM users
+            INNER JOIN meal_plans ON users.username = meal_plans.user_username
+            WHERE username = $1`,
             [username],
         );
 

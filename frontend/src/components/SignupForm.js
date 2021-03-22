@@ -20,11 +20,12 @@ const SignupForm = () => {
         e.preventDefault();
 
         try {
+            // register user and make empty meal plan
             let token = await DiscipleApi.register(formData);
             if (token != 'failure') {
-                dispatch(setCurrentUserLoggedIn(formData.username, token));
-                let res = await DiscipleApi.addSpoonacularHash(formData.username);
-                dispatch(setCurrentUserData(formData.username));
+                await dispatch(setCurrentUserLoggedIn(formData.username, token));
+                let res1 = await DiscipleApi.addSpoonacularHash(formData.username);
+                await dispatch(setCurrentUserData(formData.username));
                 history.push('/');
             } else {
                 alert('registration error!');

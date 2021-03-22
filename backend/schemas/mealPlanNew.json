@@ -1,0 +1,16 @@
+{
+    "$schema": "",
+    "$id": "",
+    "type": "object",
+    "properties": {
+        "username": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "username"
+    ]
+}

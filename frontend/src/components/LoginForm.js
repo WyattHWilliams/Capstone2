@@ -18,8 +18,9 @@ const LoginForm = () => {
         try {
             let token = await DiscipleApi.login(formData);
             if (token != 'unauthorized') {
-                dispatch(setCurrentUserLoggedIn(formData.username, token));
-                dispatch(setCurrentUserData(formData.username));
+                await dispatch(setCurrentUserLoggedIn(formData.username, token));
+                await dispatch(setCurrentUserData(formData.username));
+                console.log('going home');
                 history.push('/home');
             } else {
                 alert('incorrect username or password');

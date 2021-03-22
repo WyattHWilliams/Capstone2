@@ -5,6 +5,7 @@ const INITIAL_STATE = {
     spoonacularHash: "",
     diet: "",
     hasAnsweredMealQuestions: false,
+    mealPlan: {},
     error: false
 }
 
@@ -31,8 +32,11 @@ function currentUser(state = INITIAL_STATE, action) {
                 ...state,
                 spoonacularHash: action.spoonacularHash,
                 diet: action.diet,
-                hasAnsweredMealQuestions: action.hasAnsweredMealQuestions
+                hasAnsweredMealQuestions: action.hasAnsweredMealQuestions,
+                mealPlan: action.mealPlan
             };
+        case 'SET_MEAL_PLAN':
+            return { ...state, week: action.mealPlan }
         case 'ERROR':
             return { ...state, error: true }
         default:

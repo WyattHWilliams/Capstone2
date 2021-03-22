@@ -11,6 +11,7 @@ const { authenticateJWT } = require('./middleware/auth');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const exerciseRoutes = require('./routes/exercises');
+const mealPlanRoutes = require('./routes/mealPlans');
 
 
 // ----- [///// CONFIG /////] -----
@@ -24,6 +25,7 @@ app.use(authenticateJWT);
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/exercises', exerciseRoutes);
+app.use('/meal-plans', mealPlanRoutes);
 
 
 // ----- [///// ERROR HANDLING /////] -----

@@ -1,4 +1,5 @@
 // ----- [///// DEPENDENCIES /////] -----
+import DiscipleMealPlanApi from '../../api_helpers/discipleMealPlan_api';
 import DiscipleApi from '../../api_helpers/disciple_api';
 
 
@@ -28,8 +29,32 @@ export function setCurrentUserLoggedOut() {
 export function setCurrentUserData(username) {
     return async function (dispatch) {
         try {
+
             let user = await DiscipleApi.getUser(username);
+
+            let { monday, tuesday, wednesday, thursday, friday, saturday, sunday } = user;
+
+            let mealPlan = { monday, tuesday, wednesday, thursday, friday, saturday, sunday }
+
+            for (let key in mealPlan) {
+                mealPlan[key] = JSON.parse(mealPlan[key]);
+                delete user[key]
+            }
+
+            user.mealPlan = mealPlan;
             dispatch(gotUserData(user));
+        } catch (err) {
+            console.log(err)
+            gotError();
+        }
+    }
+}
+
+export function setCurrentUserMealPlan(username) {
+    return async function (dispatch) {
+        try {
+            let mealPlan = await DiscipleMealPlanApi.getMealPlan(username);
+            dispatch(gotMealPlan);
         } catch (err) {
             gotError();
         }
@@ -38,13 +63,21 @@ export function setCurrentUserData(username) {
 
 
 // ----- [///// DISPATCH HANDLERS /////] -----
+export function gotMealPlan(plan) {
+    return {
+        type: 'SET_MEAL_PLAN',
+        mealPlan: plan
+    }
+}
+
 export function gotUserData(user) {
-    let { spoonacularHash, diet, hasAnsweredMealQuestions } = user;
+    let { spoonacularHash, diet, hasAnsweredMealQuestions, mealPlan } = user;
     return {
         type: 'SET_CURRENT_USER_DATA',
         spoonacularHash: spoonacularHash,
         diet: diet,
-        hasAnsweredMealQuestions: hasAnsweredMealQuestions
+        hasAnsweredMealQuestions: hasAnsweredMealQuestions,
+        mealPlan: mealPlan
     }
 }
 

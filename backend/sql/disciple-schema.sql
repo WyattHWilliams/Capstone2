@@ -1,3 +1,16 @@
+DROP TABLE IF EXISTS meal_plans;
+CREATE TABLE meal_plans (
+  user_username VARCHAR(25) NOT NULL PRIMARY KEY
+    REFERENCES users ON DELETE CASCADE,
+  monday TEXT,
+  tuesday TEXT,
+  wednesday TEXT,
+  thursday TEXT,
+  friday TEXT,
+  saturday TEXT,
+  sunday TEXT
+);
+
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   username VARCHAR(25) PRIMARY KEY,

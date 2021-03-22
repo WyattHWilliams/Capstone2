@@ -27,6 +27,10 @@ Proposal: Todo Manager, Meal and Workout Plan Scheduler
             Health related info regarding food restrictions or workout limitations.
 
 
+google calendars API requires the project to have a domain, until I am ready to buy a domain and go semi-live with the project,
+I will just have a fake_calendar_table in my database that can store simple event objects with the relevant info to display on the app.
+
+
 ---------- [========== ========== GOALS ========== ==========] ----------
 
 // ----- [///// Minimum Viable Product (MVP) /////] -----
@@ -34,11 +38,12 @@ Proposal: Todo Manager, Meal and Workout Plan Scheduler
     - generate weekly meal plans by diet.
     - generate weekly exercise plans.
     - show calendar with plans.
-    - edit calendar plans.
-    - commit calendar to google calendars.
     - generate shopping cart based on meal plan.
 
 // ----- [///// FUTURE GOALS /////] -----
+
+    - commit calendar to google calendars
+    - edit calendar plans.
 
     - meal plan customisation:
         + prefered number of meals per day

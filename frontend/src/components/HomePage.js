@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import DiscipleMealPlanApi from '../api_helpers/discipleMealPlan_api';
 
 const HomePage = () => {
     const currentUser = useSelector(store => store.currentUser);

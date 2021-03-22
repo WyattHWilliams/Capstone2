@@ -5,17 +5,18 @@ import SpoonacularApi from './spoonacular_api';
 
 
 // ----- [///// CONFIG /////] -----
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+// const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
 
 // ----- [///// CLASS /////] -----
 class DiscipleApi {
     static token;
+    static BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
     static async login(loginData) {
         let { username, password } = loginData;
         try {
-            let res = await axios.post(`${BASE_URL}/auth/token`, { username, password });
+            let res = await axios.post(`${DiscipleApi.BASE_URL}/auth/token`, { username, password });
             return res.data.token;
         } catch (err) {
             return 'unauthorized';
@@ -25,7 +26,10 @@ class DiscipleApi {
     static async register(registerData) {
         let { username, password, firstName, lastName, email } = registerData;
         try {
-            let res = await axios.post(`${BASE_URL}/auth/register`, { username, password, firstName, lastName, email });
+            // make user profile
+            let res = await axios.post(`${DiscipleApi.BASE_URL}/auth/register`, { username, password, firstName, lastName, email });
+            // make empty meal plan for user
+            let res2 = await axios.post(`${DiscipleApi.BASE_URL}/meal-plans/`, { username })
             return res.data.token;
         } catch (err) {
             return 'failure';
@@ -35,7 +39,7 @@ class DiscipleApi {
     static async request(endpoint, data = {}, method = "get") {
         console.debug("API Call:", endpoint, data, method);
 
-        const url = `${BASE_URL}/${endpoint}`;
+        const url = `${DiscipleApi.BASE_URL}/${endpoint}`;
         const headers = { Authorization: `Bearer ${DiscipleApi.token}` };
         const params = (method === "get")
             ? data
@@ -58,7 +62,7 @@ class DiscipleApi {
     static async updateUser(username, userData) {
         let res = await axios({
             method: 'patch',
-            url: `${BASE_URL}/users/${username}`,
+            url: `${DiscipleApi.BASE_URL}/users/${username}`,
             data: userData,
             headers: { Authorization: `Bearer ${DiscipleApi.token}` }
         });
@@ -72,7 +76,7 @@ class DiscipleApi {
             console.log(data);
             let res = await axios({
                 method: 'patch',
-                url: `${BASE_URL}/users/${username}`,
+                url: `${DiscipleApi.BASE_URL}/users/${username}`,
                 data: {
                     spoonacularHash: data.hash
                 },
