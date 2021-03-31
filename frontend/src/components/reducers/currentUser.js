@@ -36,7 +36,7 @@ function currentUser(state = INITIAL_STATE, action) {
                 mealPlan: action.mealPlan
             };
         case 'SET_MEAL_PLAN':
-            return { ...state, week: action.mealPlan }
+            return { ...state, mealPlan: action.mealPlan }
         case 'ERROR':
             return { ...state, error: true }
         default:

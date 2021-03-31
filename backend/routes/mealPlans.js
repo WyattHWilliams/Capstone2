@@ -15,9 +15,8 @@ const mealPlanUpdateSchema = require("../schemas/mealPlanUpdate.json");
 
 // ----- [///// ROUTES /////] -----
 /** POST /meal-plans/: {username} => {mealPlan}
- *  ADMIN_ONLY
 */
-router.post('/', ensureAdmin, async function (req, res, next) {
+router.post('/', ensureLoggedIn, async function (req, res, next) {
     try {
         const validator = jsonschema.validate(req.body, mealPlanNewSchema);
         if (!validator.valid) {

@@ -31,14 +31,15 @@ export function setCurrentUserData(username) {
         try {
 
             let user = await DiscipleApi.getUser(username);
-
             let { monday, tuesday, wednesday, thursday, friday, saturday, sunday } = user;
 
             let mealPlan = { monday, tuesday, wednesday, thursday, friday, saturday, sunday }
 
-            for (let key in mealPlan) {
-                mealPlan[key] = JSON.parse(mealPlan[key]);
-                delete user[key]
+            if (mealPlan.monday != '') {
+                for (let key in mealPlan) {
+                    mealPlan[key] = JSON.parse(mealPlan[key]);
+                    delete user[key]
+                }
             }
 
             user.mealPlan = mealPlan;

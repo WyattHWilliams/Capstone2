@@ -24,9 +24,9 @@ const SignupForm = () => {
             let token = await DiscipleApi.register(formData);
             if (token != 'failure') {
                 await dispatch(setCurrentUserLoggedIn(formData.username, token));
-                let res1 = await DiscipleApi.addSpoonacularHash(formData.username);
+                // let res1 = await DiscipleApi.addSpoonacularHash(formData.username);
                 await dispatch(setCurrentUserData(formData.username));
-                history.push('/');
+                history.push('/meal-questions');
             } else {
                 alert('registration error!');
                 console.log('registration error: registration failure');

@@ -24,7 +24,7 @@ class MealPlan {
         const result = await db.query(
             `INSERT INTO meal_plans
            (user_username)
-           VALUES ($1, $2, $3, $4)
+           VALUES ($1)
            RETURNING user_username AS username`,
             [username],
         );

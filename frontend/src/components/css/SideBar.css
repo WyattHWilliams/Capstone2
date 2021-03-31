@@ -1,0 +1,14 @@
+.SideBar-Component {
+    position: relative; 
+    top: -110px;
+    width: 30%;
+    background-color: cornsilk;
+}
+
+.hidden {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}

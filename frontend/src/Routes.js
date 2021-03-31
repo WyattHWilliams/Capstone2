@@ -14,7 +14,7 @@ const Routes = () => {
             <Route path='/signup'><SignupForm /></Route>
             <Route path='/login'><LoginForm /></Route>
             <ProtectedRoute path='/home'><HomePage /></ProtectedRoute>
-            <ProtectedRoute path='/mealQuestions'><MealQuestionsForm /></ProtectedRoute>
+            <ProtectedRoute path='/meal-questions'><MealQuestionsForm /></ProtectedRoute>
             <Route path='/'><WelcomePage /></Route>
         </Switch>
     )

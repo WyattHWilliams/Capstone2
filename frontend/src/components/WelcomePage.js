@@ -17,6 +17,7 @@ const WelcomePage = () => {
                 <h1>Welcome To Disciple</h1>
                 <Link to='/login'><button>Log In!</button></Link>
                 <Link to='/signup'><button>Sign Up!</button></Link>
+                {/* <DayChild type="meal_slot" /> */}
             </div>
         </div>
     )

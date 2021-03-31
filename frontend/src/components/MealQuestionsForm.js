@@ -19,12 +19,13 @@ const MealQuestionsForm = () => {
             let user = await DiscipleApi.updateUser(currentUser.username, formData);
             console.log(user);
             if (user) {
+                console.log('hello!')
                 let res = await DiscipleApi.updateUser(currentUser.username, {
                     hasAnsweredMealQuestions: true
                 })
-                dispatch(setCurrentUserData(currentUser.username));
-                history.push('/home');
             }
+            await dispatch(setCurrentUserData(currentUser.username));
+            history.push('/home');
         } catch (err) {
             alert('form submission error!');
             console.log('form submission error:', err);
