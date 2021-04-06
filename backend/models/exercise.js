@@ -5,21 +5,80 @@ const db = require('../db');
 const { sqlForPartialUpdate } = require('../helpers/sql');
 const { NotFoundError } = require('../expressError');
 
+const bodyObj = {
+    "Upper Body": ['Shoulders', 'Upper Arm'],
+    "Core": ['Back', 'Chest', 'Waist'],
+    "Lower Body": ['Hips', 'Thighs', 'Calves'],
+    "Full Body": ["Cardio"]
+}
+const muscleObj = {
+    "Shoulders": ['Deltoid, Anterior', 'Deltoid, Lateral', 'Deltoid, Posterior'],
+    "Upper Arm": ['Triceps', 'Biceps'],
+    "Back": ['Infraspinatus', 'Trapezius, Upper', 'Back, General'],
+    "Chest": ['Pectoralis Major, Sternal', 'Pectoralis Major, Clavicular', 'Serratus Anterior'],
+    "Waist": ['Erector Spinae', 'Obliques', 'Rectus Abdominis'],
+    "Hips": ['Iliopsoas', 'Hip Abductors', 'Gluteus Maximus'],
+    "Thighs": ['Obliques', 'Hamstrings', 'Quadriceps'],
+    "Calves": ['Gastrocnemius', 'Tibialis Anterior'],
+    "Cardio": ['Cardio']
+}
 
 // ----- [///// CLASS /////] -----
 class Exercise {
+
+    static async generateWorkout(generalLocation) {
+        function shuffleArray(arr) {
+            return arr.sort(() => Math.random() - 0.5);
+        }
+        let data = [];
+        for (let location of bodyObj[generalLocation]) {
+            for (let muscle of muscleObj[location]) {
+                console.log(generalLocation, location, muscle)
+                let res = await db.query(
+                    `SELECT
+                        id,
+                        name,
+                        description,
+                        muscle,
+                        general_location AS generalLocation,
+                        specific_location AS specificLocation
+                    FROM exercises
+                    WHERE general_location = $1 AND specific_location = $2 AND muscle = $3`,
+                    [
+                        generalLocation,
+                        location,
+                        muscle
+                    ]
+                )
+                let exercises = res.rows;
+                //console.log(exercises)
+                let exerArr = shuffleArray(exercises);
+                console.log(exerArr);
+                data.push(exerArr[0]);
+            }
+        }
+        return data;
+    }
+
     /** CREATE EXERCISE
      *  {name, description} => {id, name, description}
     */
     static async create(data) {
         const result = await db.query(
             `INSERT INTO exercises (name,
-                             description)
-           VALUES ($1, $2)
+                             description,
+                             muscle,
+                             general_location AS generalLocation,
+                             specific_location AS specificLocation
+                             )
+           VALUES ($1, $2, $3, $4, $5)
            RETURNING id, name, description`,
             [
                 data.name,
-                data.description
+                data.description,
+                data.muscle,
+                data.generalLocation,
+                data.specificLocation
             ]);
         let exercise = result.rows[0];
 

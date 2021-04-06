@@ -16,7 +16,7 @@ class DiscipleMealPlanApi extends DiscipleApi {
         for (let key in obj) {
             let str = JSON.stringify(obj[key]);
             obj[key] = str.slice(0, (str.length))
-            console.log(obj)
+            // console.log(obj)
         }
         return obj;
     }

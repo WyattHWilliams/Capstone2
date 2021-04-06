@@ -33,6 +33,16 @@ router.post('/', ensureAdmin, async function (req, res, next) {
     }
 })
 
+/** GET /exercises/generate-workout/[generalLocation]: => [{id, name, description}, ...] */
+router.get('/generate-workout/:generalLocation', async function (req, res, next) {
+    try {
+        const exercises = await Exercise.generateWorkout(req.params.generalLocation);
+        return res.json(exercises);
+    } catch (err) {
+        return next(err);
+    }
+});
+
 /** GET /exercises/: => {exercises: [{id, name, description}, ...]} */
 router.get('/', async function (req, res, next) {
     const q = req.query;

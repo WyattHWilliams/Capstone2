@@ -34,8 +34,10 @@ router.post('/', ensureLoggedIn, async function (req, res, next) {
 
 /** GET /meal-plans/[mealPlanUsername]: => {mealPlan}
  *  ADMIN or CORRECT_USER
+ * 
+ * ensureCorrectUserOrAdmin,
 */
-router.get('/:username', ensureCorrectUserOrAdmin, async function (req, res, next) {
+router.get('/:username', async function (req, res, next) {
     try {
         const mealPlan = await MealPlan.get(req.params.username);
         return res.json({ mealPlan });

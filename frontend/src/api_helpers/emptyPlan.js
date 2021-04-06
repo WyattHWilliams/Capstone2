@@ -1,4 +1,4 @@
-let emptyTempMealPlan = {
+const emptyTempMealPlan = {
     monday: {
         breakfast: {
             recipeId: '',

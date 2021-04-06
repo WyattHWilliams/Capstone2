@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import RecipeList from './RecipeList';
-import './css/SideBar.css'
+// import './css/SideBar.css'
 
 const SideBar = () => {
     const { meal, workout } = useSelector(store => store.sideBarDisplay);

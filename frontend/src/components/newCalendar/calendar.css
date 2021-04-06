@@ -1,0 +1,101 @@
+.CalendarContainer-Component {
+    width: 60%;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    background-image: linear-gradient(to bottom right, rgba(47, 137, 255, 0.555), rgba(0, 170, 192, 0.336));;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.DayList-Component {
+    width: 10%;
+    height: 100%;
+    background: rgba(0, 0, 0, .15);
+    display: flex;
+    flex-direction: column;
+}
+    .DayList-Day {
+        width: 100%;
+        height: 14.28%;
+        font-family: Arial, Helvetica, sans-serif;
+        transition: .5s;
+    }
+        .DayList-Day p {
+            position: relative;
+            top: 40%;
+            margin: 0;
+        }
+
+    .selected {
+        background-color: rgba(0, 0, 0, .25);
+    }
+
+.TodoContainer-Component {
+    width: 65%;
+    height: auto;
+}
+
+    .TodoList-Component {
+        width: 100%;
+        height: 15%;
+    }
+
+    .item-container:hover {
+        background-color: rgba(0, 0, 0, .25);
+    }
+
+        .item-container {
+            height: 100%;
+            margin-top: 2%;
+            margin-left: 5%;
+            margin-right: 10%;
+            transition: 1s;
+            border-radius: 20px;
+        }
+
+            .deco-ball {
+                position: relative;
+                top: 5%;
+                left: 20px;
+                width: 11px;
+                height: 11px;
+                border-radius: 50%;
+                background-color: white;
+            }
+
+            .deco-bar {
+                position: relative;
+                top: 15%;
+                left: 24px;
+                width: 2.5px;
+                height: 70%;
+                background-color: white;
+            }
+
+        .ListItem-Component {
+            position: relative;
+            top: -85%;
+            width: 80%;
+            height: auto;
+            text-align: end;
+            transition: 1s;
+        }
+
+            .ListItem-Component h4 {
+                position: relative;
+                top: 5px;
+                left: 0;
+                margin: 0;
+            }
+
+.SideBar-Component {
+    width: 40%;
+    height: auto;
+    background-color: rgba(0, 0, 0, .15);
+    transition: 1s;
+}
+
+    .hidden {
+        display: none;
+    }
