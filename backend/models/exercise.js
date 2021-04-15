@@ -33,7 +33,6 @@ class Exercise {
         let data = [];
         for (let location of bodyObj[generalLocation]) {
             for (let muscle of muscleObj[location]) {
-                console.log(generalLocation, location, muscle)
                 let res = await db.query(
                     `SELECT
                         id,
@@ -51,9 +50,7 @@ class Exercise {
                     ]
                 )
                 let exercises = res.rows;
-                //console.log(exercises)
                 let exerArr = shuffleArray(exercises);
-                console.log(exerArr);
                 data.push(exerArr[0]);
             }
         }

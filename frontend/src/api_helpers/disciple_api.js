@@ -1,7 +1,6 @@
 // interactions with the main disciple api (user profiles, user data, calendar data, login, signup)
 // ----- [///// DEPENDENCIES /////] -----
 import axios from "axios";
-import SpoonacularApi from './spoonacular_api';
 
 
 // ----- [///// CONFIG /////] -----
@@ -73,24 +72,6 @@ class DiscipleApi {
         });
         console.log(res);
         return res.data.user;
-    }
-
-    static async addSpoonacularHash(username) {
-        try {
-            let { data } = await SpoonacularApi.getUserHash(username);
-            console.log(data);
-            let res = await axios({
-                method: 'patch',
-                url: `${DiscipleApi.BASE_URL}/users/${username}`,
-                data: {
-                    spoonacularHash: data.hash
-                },
-                headers: { Authorization: `Bearer ${DiscipleApi.token}` }
-            });
-            return res.data.user;
-        } catch (err) {
-            return 'error fetching spoonacular hash';
-        }
     }
 }
 

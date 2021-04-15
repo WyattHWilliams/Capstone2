@@ -8,9 +8,6 @@
       "minLength": 5,
       "maxLength": 20
     },
-    "spoonacularHash": {
-      "type": "string"
-    },
     "firstName": {
       "type": "string",
       "minLength": 1,

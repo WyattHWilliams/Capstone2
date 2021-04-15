@@ -1,0 +1,141 @@
+.ProfileBar-Component {
+    z-index: 9;
+    width: 15%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(33, 78, 104 , 1);
+}
+
+    .ProfileDisplay-Component {
+        width: 100%;
+        height: auto;
+        position: relative;
+        left: 0;
+        top: 0;
+    }
+
+        .ProfileDisplay-Component h2 {
+            width: fit-content;
+            position: relative;
+            left: 10%;
+        }
+
+        .ProfileDisplay-Component h3 {
+            width: fit-content;
+            position: relative;
+            left: 10%;
+            color: white;
+        }
+
+        .ProfileDisplay-Component p {
+            width: 80%;
+            position: relative;
+            left: 10%;
+            color: white;
+            text-align: left;
+            display: flex;
+            flex-direction: row;
+        }
+
+            .ProfileDisplay-Component p button {
+                position: relative;
+                top: 4px;
+                width: 35px;
+                height: fit-content;
+                font-size: .66rem;
+            }
+
+        .ProfileDisplay-Component hr {
+            border: royalblue;
+            height: 2px;
+            width: 100%;
+            background-color: white;
+        }
+
+        .ProfileDisplay-Logout-Subcomponent {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+            .ProfileDisplay-Component button {
+                border-radius: 10px;
+                border-style: none;
+                color: white;
+                height: auto;
+                width: 30%;
+                margin-left: 5%;
+                margin-right: 5%;
+                background-color:rgb(180, 155, 92);
+            }
+
+    .MealQuestions-Container {
+        color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+        .ProfileQuestions_meals {
+            width: 40%;
+            
+        }
+
+        .form-group {
+            border-top: white;
+            border-style: solid;
+            border-width: 2px;
+            border-left: none;
+            border-right: none;
+            border-bottom: none;
+            display: flex;
+            flex-direction: row;
+            margin: 5%;
+            padding: 10px;
+            background-color: rgba(0, 0, 0 , .25);
+        }
+            .form-group p {
+                position: relative;
+                top: 0;
+                margin: 0;
+                margin-left: 5%;
+                text-align: right;
+            }
+
+.ProfileQuestionsForm-Subcomponent button {
+    border-radius: 10px;
+    border-style: none;
+    color: white;
+    height: auto;
+    width: 30%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color:rgb(180, 155, 92);
+}
+
+.editing-enter {
+    width: 100%;
+    transition: .5s;
+}
+.editing-enter-active {
+    width: 15%;
+    transition: .5s;
+}
+.editing-enter-done {
+    width: 15%;
+    transition: .5s;
+}
+.editing-exit {
+    width: 15%;
+    transition: .5s;
+}
+.editing-exit-active {
+    width: 100%;
+    
+}
+.editing-exit-done {
+    width: 100%;
+    transition: .5s;
+}

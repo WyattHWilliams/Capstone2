@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const ProtectedRoute = (props) => {
-    const currentUser = useSelector(store => store.currentUser);
+    const profile = useSelector(store => store.profile);
 
-    return (currentUser.isLoggedIn ? props.children : <Redirect to={{ pathname: '/' }} />)
+    return (profile.isLoggedIn ? props.children : <Redirect to={{ pathname: '/' }} />)
 }
 
 export default ProtectedRoute;

@@ -12,6 +12,7 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const exerciseRoutes = require('./routes/exercises');
 const mealPlanRoutes = require('./routes/mealPlans');
+const todoItemRoutes = require('./routes/todoItems');
 
 
 // ----- [///// CONFIG /////] -----
@@ -26,6 +27,7 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/exercises', exerciseRoutes);
 app.use('/meal-plans', mealPlanRoutes);
+app.use('/todo-items', todoItemRoutes);
 
 
 // ----- [///// ERROR HANDLING /////] -----

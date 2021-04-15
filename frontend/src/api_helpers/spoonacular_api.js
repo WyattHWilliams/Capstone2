@@ -7,6 +7,7 @@
 
 // ----- [///// DEPENDENCIES /////] -----
 import axios from "axios";
+import TodoItemApi from "./discipleTodoItem_api";
 
 
 // ----- [///// CONFIG /////] -----
@@ -66,31 +67,28 @@ class SpoonacularApi {
         }
 
         async function getIdsFromMealPlan({ week }) {
-            const mealTemplate = {
-                username: '',
-                dayIndex: 0,
-                type: 'meal',
-                name: '',
-                desc: '',
-                detail: {
-                    recipeId: '',
-                    recipeName: '',
-                    timeReady: '',
-                    servings: '',
-                    ingredients: [],
-                    steps: []
-                }
-            }
             let resArr = []
             let mealNames = ['Breakfast', 'Lunch', 'Dinner'];
             let dayNames = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
             let idArr = [];
-            console.log(mealTemplate);
 
             for (let day in week) {
                 for (let i = 0; i < week[day].meals.length; i++) {
-                    let meal = mealTemplate;
-                    console.log(meal, day, i)
+                    let meal = {
+                        username: '',
+                        dayIndex: 0,
+                        type: 'meal',
+                        name: '',
+                        desc: '',
+                        detail: {
+                            recipeId: '',
+                            recipeName: '',
+                            timeReady: '',
+                            servings: '',
+                            ingredients: [],
+                            steps: []
+                        }
+                    }
                     meal.username = username;
                     meal.dayIndex = dayNames.indexOf(day);
                     meal.name = mealNames[i];
@@ -101,7 +99,7 @@ class SpoonacularApi {
                     meal.detail.servings = week[day].meals[i].servings;
 
                     idArr.push(week[day].meals[i].id);
-                    resArr = [...resArr, meal];
+                    resArr.push(meal);
                 }
             }
             mealArr = [...resArr];
@@ -133,9 +131,14 @@ class SpoonacularApi {
         await extractIngredientsAndSteps(infoArr);
 
         // part 2: map meal plan into database
+        try {
+            let res1 = await TodoItemApi.deleteMealItems(username)
+        } catch (err) {
+            console.log(err);
+        }
+        let res2 = await TodoItemApi.addMultTodoItem(username, mealArr)
 
-
-        return mealArr;
+        return res2;
     }
 }
 

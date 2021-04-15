@@ -1,0 +1,93 @@
+.CalendarContainer-Component {
+    width: 85%;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    background-image: linear-gradient(to bottom right, rgba(47, 137, 255, 0.555), rgba(0, 170, 192, 0.336));;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.DaySelection-Component {
+    width: 5%;
+    height: 100%;
+    background: rgba(0, 0, 0, .15);
+    display: flex;
+    flex-direction: column;
+}
+    .DaySelection-Day {
+        width: 100%;
+        height: 14.28%;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+        .DaySelection-Day p {
+            position: relative;
+            top: 40%;
+            margin: 0;
+        }
+
+    .selected {
+        background-color: rgba(0, 0, 0, .25);
+    }
+
+    .TodoList-Component {
+        width: 40%;
+        height: auto;
+    }
+
+        .TodoItem-Component {
+            position: relative;
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 2.5%;
+            margin-bottom: 2.5%;
+            height: auto;
+            text-align: end;
+        }
+
+        .TodoItem-Component h4 {
+            position: relative;
+            top: 5px;
+            left: 0;
+            margin: 0;
+        }
+
+.SideBar-Component {
+    width: 60%;
+    height: auto;
+    background-color: rgba(0, 0, 0, .15);
+    transition: 1s;
+}
+    .SideBar-Subcomponent {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+        .RecipeList-Component {
+            width: 50%;
+        }
+
+    .hidden {
+        display: none;
+    }
+
+.TodoList-Component button {
+                position: absolute;
+                bottom: 25px;
+                left: 13%;
+                border-radius: 10px;
+                border-style: none;
+                color: white;
+                height: auto;
+                width: 20%;
+                height: 10%;
+                font-size: 1.5rem;
+                background-color:rgb(200, 120, 200);
+            }
