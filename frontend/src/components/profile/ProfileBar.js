@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
-import { setCurrentUserLoggedOut } from '../../actions/profileActionCreators';
+import { setCurrentUserLoggedOut, updateProfileDiet } from '../../actions/profileActionCreators';
 import { useHistory } from 'react-router';
 
 import SpoonacularApi from '../../api_helpers/spoonacular_api';
@@ -32,6 +32,8 @@ function ProfileBar() {
         await WorkoutApi.getWorkoutPlan(profile.username);
         await dispatch(setTodoList(profile.username));
     }
+
+    // dispatch(updateProfileDiet(profile.username));
 
     return (
         <CSSTransition in={editingProfile}

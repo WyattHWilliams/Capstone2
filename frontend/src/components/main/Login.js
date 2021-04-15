@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import useFormFields from '../../hooks/useFormFields';
 import DiscipleApi from '../../api_helpers/disciple_api';
 import { setCurrentUserLoggedIn } from '../../actions/profileActionCreators';
+import { updateProfileDiet } from '../../actions/profileActionCreators';
 
 const Login = () => {
     const profile = useSelector(store => store.profile);
@@ -20,9 +21,9 @@ const Login = () => {
         e.preventDefault();
         try {
             let token = await DiscipleApi.login(formData);
+            console.log(token)
             if (token != 'unauthorized') {
                 await dispatch(setCurrentUserLoggedIn(formData.username, token));
-                // await dispatch(setCurrentUserData(formData.username));
                 history.push('/home');
             } else {
                 alert('incorrect username or password');

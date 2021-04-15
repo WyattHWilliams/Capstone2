@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import useFormFields from '../../hooks/useFormFields';
+import DiscipleApi from '../../api_helpers/disciple_api';
+import { setCurrentUserLoggedIn } from '../../actions/profileActionCreators';
 
 const Signup = () => {
     const profile = useSelector(store => store.profile);
@@ -19,6 +21,22 @@ const Signup = () => {
 
     async function handleSubmit(e) {
         e.preventDefault();
+
+        try {
+            // register user and make empty meal plan
+            let token = await DiscipleApi.register(formData);
+            if (token != 'failure') {
+                await dispatch(setCurrentUserLoggedIn(formData.username, token));
+                history.push('/home');
+            } else {
+                alert('registration error!');
+                console.log('registration error: registration failure');
+                resetForm();
+            }
+        } catch (err) {
+            alert('registration error!');
+            console.log('registration error:', err);
+        }
     }
 
     return (

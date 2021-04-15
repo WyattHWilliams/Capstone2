@@ -6,7 +6,8 @@ export function setCurrentUserLoggedIn(username, token) {
     return async function (dispatch) {
         try {
             DiscipleApi.token = token;
-            dispatch(login(username, token));
+            await dispatch(login(username, token));
+            await dispatch(updateProfileDiet(username))
         } catch (err) {
             gotError();
         }
@@ -27,7 +28,6 @@ export function setCurrentUserLoggedOut() {
 export function updateProfileDiet(username) {
     return async function (dispatch) {
         try {
-
             let { diet } = await DiscipleApi.getUser(username);
             dispatch(gotDiet(diet));
         } catch (err) {

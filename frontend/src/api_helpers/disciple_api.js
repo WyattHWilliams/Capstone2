@@ -27,13 +27,6 @@ class DiscipleApi {
         try {
             // make user profile
             let res = await axios.post(`${DiscipleApi.BASE_URL}/auth/register`, { username, password, firstName, lastName, email });
-            // make empty meal plan for user
-            let res2 = await axios({
-                method: 'post',
-                url: `${DiscipleApi.BASE_URL}/meal-plans/`,
-                data: { username },
-                headers: { Authorization: `Bearer ${res.data.token}` }
-            })
             return res.data.token;
         } catch (err) {
             return 'failure';
